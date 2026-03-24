@@ -1,8 +1,96 @@
+"use client";
+
 import Link from 'next/link';
+import { useState } from 'react';
+
+const initialLibraries = [
+  {
+    id: "anatomy-fundamentals",
+    name: "Anatomy Fundamentals",
+    topicsCount: "24 Topics",
+    icon: "science",
+    updatedAt: "Updated 2 days ago",
+    iconStyle: "bg-secondary-container text-on-secondary-container",
+    hasAvatars: true,
+    shapeStyle: "bg-secondary-container/30",
+    isPaper: false
+  },
+  {
+    id: "quantum-physics-prep",
+    name: "Quantum Physics Prep",
+    topicsCount: "12 Topics",
+    icon: "biotech",
+    updatedAt: "Updated 5 hours ago",
+    iconStyle: "bg-secondary-container/50 text-on-secondary text-primary-dim",
+    progress: 65,
+    shapeStyle: "bg-primary-container/20",
+    isPaper: false
+  },
+  {
+    id: "ai-ethics-research",
+    name: "Research Papers - AI Ethics",
+    topicsCount: "42 Papers",
+    icon: "psychology",
+    updatedAt: "Updated Yesterday",
+    iconStyle: "bg-tertiary-container text-on-tertiary-container",
+    tags: ["AI Summary Active", "Shared"],
+    shapeStyle: "bg-tertiary-container/30",
+    isPaper: true
+  },
+  {
+    id: "architectural-history",
+    name: "Architectural History",
+    topicsCount: "18 Topics",
+    icon: "architecture",
+    updatedAt: "Updated 1 week ago",
+    iconStyle: "bg-primary-dim text-on-primary",
+    quote: '"A deep dive into Gothic and..."',
+    shapeStyle: "bg-surface-container-highest/30",
+    isPaper: false
+  }
+];
 
 export default function LibrariesPage() {
+  const [libraries, setLibraries] = useState(initialLibraries);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [newLibraryName, setNewLibraryName] = useState("");
+  const [error, setError] = useState("");
+
+  const handleCreateLibrary = () => {
+    if (!newLibraryName.trim()) {
+      setError("Library name cannot be empty");
+      return;
+    }
+    if (libraries.some(lib => lib.name.toLowerCase() === newLibraryName.trim().toLowerCase())) {
+      setError("A library with this name already exists");
+      return;
+    }
+
+    const newLibrary = {
+      id: newLibraryName.trim().toLowerCase().replace(/\s+/g, '-'),
+      name: newLibraryName.trim(),
+      topicsCount: "0 Topics",
+      updatedAt: "Updated Just now",
+      icon: "menu_book",
+      iconStyle: "bg-primary text-on-primary",
+      shapeStyle: "bg-primary/5",
+      isPaper: false
+    };
+
+    setLibraries([newLibrary, ...libraries]);
+    setIsModalOpen(false);
+    setNewLibraryName("");
+    setError("");
+  };
+
+  const cancelCreate = () => {
+    setIsModalOpen(false);
+    setNewLibraryName("");
+    setError("");
+  };
+
   return (
-    <div className="min-h-screen bg-surface-container-lowest font-body flex">
+    <div className="min-h-screen bg-surface-container-lowest font-body flex relative">
       
       {/* Left Sidebar Layout */}
       <aside className="w-72 bg-surface-container-lowest border-r border-surface-container-highest hidden md:flex flex-col flex-shrink-0">
@@ -34,7 +122,7 @@ export default function LibrariesPage() {
          </nav>
          
          <div className="p-6 border-t border-surface-container-highest">
-            <button className="w-full flex items-center justify-center gap-2 bg-primary text-on-primary text-sm font-bold px-6 py-4 rounded-full shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer">
+            <button onClick={() => setIsModalOpen(true)} className="w-full flex items-center justify-center gap-2 bg-primary text-on-primary text-sm font-bold px-6 py-4 rounded-full shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer">
               <span className="material-symbols-outlined text-[18px]">add</span>
               Create New Library
             </button>
@@ -73,134 +161,71 @@ export default function LibrariesPage() {
           {/* Grid Layout */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pb-32">
              
-             {/* Card 1 */}
-             <div className="bg-surface-container-lowest border border-outline-variant/30 rounded-3xl p-6 shadow-sm flex flex-col relative overflow-hidden group hover:shadow-md transition-shadow">
-                {/* Abstract shape */}
-                <div className="absolute top-0 right-0 w-32 h-32 bg-secondary-container/30 rounded-bl-full pointer-events-none" />
-                
-                <div className="flex items-start justify-between mb-6 relative z-10">
-                   <div className="w-12 h-12 rounded-2xl bg-secondary-container text-on-secondary-container flex items-center justify-center">
-                     <span className="material-symbols-outlined">science</span>
-                   </div>
-                   <div className="flex items-center gap-1 text-outline hover:text-on-surface transition-colors cursor-pointer">
-                     <span className="material-symbols-outlined text-[18px] p-1 rounded-full hover:bg-surface-container-high">edit</span>
-                     <span className="material-symbols-outlined text-[18px] p-1 rounded-full hover:bg-surface-container-high">share</span>
-                     <span className="material-symbols-outlined text-[18px] p-1 rounded-full hover:bg-surface-container-high">delete</span>
-                   </div>
-                </div>
-                
-                <h3 className="font-headline text-xl font-bold text-on-surface mb-6 relative z-10">Anatomy Fundamentals</h3>
-                
-                <div className="flex items-center gap-3 mt-auto relative z-10">
-                   <div className="bg-surface-container-high text-on-surface text-xs font-semibold px-3 py-1.5 rounded-full flex items-center gap-1">
-                     <span className="material-symbols-outlined text-[14px]">layers</span> 24 Topics
-                   </div>
-                   <div className="text-xs text-on-surface-variant font-medium">Updated 2 days ago</div>
-                </div>
-                
-                {/* User avatars mock */}
-                <div className="flex -space-x-2 mt-6 relative z-10">
-                   <div className="w-8 h-8 rounded-full bg-primary/20 border-2 border-surface-container-lowest"></div>
-                   <div className="w-8 h-8 rounded-full bg-tertiary-container border-2 border-surface-container-lowest"></div>
-                   <div className="w-8 h-8 rounded-full bg-surface-container-high text-xs flex items-center justify-center font-bold text-on-surface border-2 border-surface-container-lowest">+2</div>
-                </div>
-             </div>
+             {libraries.map((lib, i) => (
+               <Link key={lib.id + i} href={`/library/${lib.id}`} className="bg-surface-container-lowest border border-outline-variant/30 rounded-3xl p-6 shadow-sm flex flex-col relative overflow-hidden group hover:shadow-md transition-shadow block cursor-pointer">
+                  {/* Abstract shape */}
+                  <div className={`absolute top-0 right-0 w-32 h-32 ${lib.shapeStyle} rounded-bl-full pointer-events-none`} />
+                  
+                  <div className="flex items-start justify-between mb-6 relative z-10">
+                     <div className={`w-12 h-12 rounded-2xl ${lib.iconStyle} flex items-center justify-center`}>
+                       <span className="material-symbols-outlined">{lib.icon}</span>
+                     </div>
+                     <div className="flex items-center gap-1 text-outline hover:text-on-surface transition-colors cursor-pointer" onClick={(e) => e.preventDefault()}>
+                       <span className="material-symbols-outlined text-[18px] p-1 rounded-full hover:bg-surface-container-high">edit</span>
+                       <span className="material-symbols-outlined text-[18px] p-1 rounded-full hover:bg-surface-container-high">share</span>
+                       <span className="material-symbols-outlined text-[18px] p-1 rounded-full hover:bg-surface-container-high">delete</span>
+                     </div>
+                  </div>
+                  
+                  <h3 className={`font-headline text-xl font-bold text-on-surface mb-6 relative z-10 ${lib.isPaper ? 'line-clamp-2' : ''}`}>{lib.name}</h3>
+                  
+                  <div className={`flex items-center gap-3 mt-auto relative z-10 ${lib.tags || lib.quote || lib.progress || lib.hasAvatars ? 'mb-4' : ''}`}>
+                     <div className="bg-surface-container-high text-on-surface text-xs font-semibold px-3 py-1.5 rounded-full flex items-center gap-1">
+                       <span className="material-symbols-outlined text-[14px]">
+                         {lib.isPaper ? 'article' : 'layers'}
+                       </span> {lib.topicsCount}
+                     </div>
+                     <div className="text-xs text-on-surface-variant font-medium">{lib.updatedAt}</div>
+                  </div>
+                  
+                  {lib.hasAvatars && (
+                    <div className="flex -space-x-2 mt-auto relative z-10">
+                       <div className="w-8 h-8 rounded-full bg-primary/20 border-2 border-surface-container-lowest"></div>
+                       <div className="w-8 h-8 rounded-full bg-tertiary-container border-2 border-surface-container-lowest"></div>
+                       <div className="w-8 h-8 rounded-full bg-surface-container-high text-xs flex items-center justify-center font-bold text-on-surface border-2 border-surface-container-lowest">+2</div>
+                    </div>
+                  )}
 
-             {/* Card 2 */}
-             <div className="bg-surface-container-lowest border border-outline-variant/30 rounded-3xl p-6 shadow-sm flex flex-col relative overflow-hidden group hover:shadow-md transition-shadow">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-primary-container/20 rounded-bl-full pointer-events-none" />
-                
-                <div className="flex items-start justify-between mb-6 relative z-10">
-                   <div className="w-12 h-12 rounded-2xl bg-secondary-container/50 text-on-secondary flex items-center justify-center text-primary-dim">
-                     <span className="material-symbols-outlined">biotech</span>
-                   </div>
-                   <div className="flex items-center gap-1 text-outline hover:text-on-surface transition-colors cursor-pointer">
-                     <span className="material-symbols-outlined text-[18px] p-1 rounded-full hover:bg-surface-container-high">edit</span>
-                     <span className="material-symbols-outlined text-[18px] p-1 rounded-full hover:bg-surface-container-high">share</span>
-                     <span className="material-symbols-outlined text-[18px] p-1 rounded-full hover:bg-surface-container-high">delete</span>
-                   </div>
-                </div>
-                
-                <h3 className="font-headline text-xl font-bold text-on-surface mb-6 relative z-10">Quantum Physics Prep</h3>
-                
-                <div className="flex items-center gap-3 mt-auto relative z-10">
-                   <div className="bg-surface-container-high text-on-surface text-xs font-semibold px-3 py-1.5 rounded-full flex items-center gap-1">
-                     <span className="material-symbols-outlined text-[14px]">layers</span> 12 Topics
-                   </div>
-                   <div className="text-xs text-on-surface-variant font-medium">Updated 5 hours ago</div>
-                </div>
-                
-                {/* Progress bar mock */}
-                <div className="w-full bg-surface-container-high h-1.5 rounded-full mt-6 overflow-hidden relative z-10">
-                  <div className="bg-primary h-full rounded-full" style={{ width: '65%' }}></div>
-                </div>
-             </div>
+                  {lib.progress && (
+                    <div className="w-full bg-surface-container-high h-1.5 rounded-full mt-auto overflow-hidden relative z-10">
+                      <div className="bg-primary h-full rounded-full" style={{ width: `${lib.progress}%` }}></div>
+                    </div>
+                  )}
 
-             {/* Card 3 */}
-             <div className="bg-surface-container-lowest border border-outline-variant/30 rounded-3xl p-6 shadow-sm flex flex-col relative overflow-hidden group hover:shadow-md transition-shadow">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-tertiary-container/30 rounded-bl-full pointer-events-none" />
-                
-                <div className="flex items-start justify-between mb-6 relative z-10">
-                   <div className="w-12 h-12 rounded-2xl bg-tertiary-container text-on-tertiary-container flex items-center justify-center">
-                     <span className="material-symbols-outlined">psychology</span>
-                   </div>
-                   <div className="flex items-center gap-1 text-outline hover:text-on-surface transition-colors cursor-pointer">
-                     <span className="material-symbols-outlined text-[18px] p-1 rounded-full hover:bg-surface-container-high">edit</span>
-                     <span className="material-symbols-outlined text-[18px] p-1 rounded-full hover:bg-surface-container-high">share</span>
-                     <span className="material-symbols-outlined text-[18px] p-1 rounded-full hover:bg-surface-container-high">delete</span>
-                   </div>
-                </div>
-                
-                <h3 className="font-headline text-xl font-bold text-on-surface mb-6 relative z-10 line-clamp-2">Research Papers - AI Ethics</h3>
-                
-                <div className="flex items-center gap-3 mt-auto relative z-10 mb-4">
-                   <div className="bg-surface-container-high text-on-surface text-xs font-semibold px-3 py-1.5 rounded-full flex items-center gap-1">
-                     <span className="material-symbols-outlined text-[14px]">article</span> 42 Papers
-                   </div>
-                   <div className="text-xs text-on-surface-variant font-medium">Updated Yesterday</div>
-                </div>
-                
-                <div className="flex gap-2 relative z-10 mt-auto">
-                   <span className="text-[10px] font-bold uppercase tracking-widest bg-primary/10 text-primary px-2 py-1 rounded-md">AI Summary Active</span>
-                   <span className="text-[10px] font-bold uppercase tracking-widest bg-secondary-container text-on-secondary-container px-2 py-1 rounded-md">Shared</span>
-                </div>
-             </div>
+                  {lib.tags && (
+                    <div className="flex gap-2 relative z-10 mt-auto">
+                      {lib.tags.map((tag, tagIndex) => (
+                        <span key={tagIndex} className={`text-[10px] font-bold uppercase tracking-widest px-2 py-1 rounded-md ${tagIndex === 0 ? 'bg-primary/10 text-primary' : 'bg-secondary-container text-on-secondary-container'}`}>
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+
+                  {lib.quote && (
+                    <p className="text-xs text-on-surface-variant italic relative z-10 mt-auto line-clamp-1">{lib.quote}</p>
+                  )}
+               </Link>
+             ))}
 
              {/* Create New Card */}
-             <button className="bg-surface border-2 border-dashed border-outline-variant/50 rounded-3xl p-6 flex flex-col items-center justify-center min-h-[250px] group hover:border-primary/50 hover:bg-surface-container-lowest transition-all cursor-pointer">
+             <button onClick={() => setIsModalOpen(true)} className="bg-surface border-2 border-dashed border-outline-variant/50 rounded-3xl p-6 flex flex-col items-center justify-center min-h-[250px] group hover:border-primary/50 hover:bg-surface-container-lowest transition-all cursor-pointer">
                 <div className="w-14 h-14 rounded-full bg-surface-container-high text-on-surface-variant flex items-center justify-center mb-4 group-hover:bg-primary group-hover:text-on-primary transition-colors shadow-sm">
                   <span className="material-symbols-outlined text-[24px]">add</span>
                 </div>
                 <h3 className="font-headline text-lg font-bold text-on-surface mb-2 group-hover:text-primary transition-colors">Create New Library</h3>
                 <p className="text-sm text-on-surface-variant text-center max-w-xs">Start a new research project or study module.</p>
              </button>
-
-             {/* Card 4 */}
-             <div className="bg-surface-container-lowest border border-outline-variant/30 rounded-3xl p-6 shadow-sm flex flex-col relative overflow-hidden group hover:shadow-md transition-shadow">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-surface-container-highest/30 rounded-bl-full pointer-events-none" />
-                
-                <div className="flex items-start justify-between mb-6 relative z-10">
-                   <div className="w-12 h-12 rounded-2xl bg-primary-dim text-on-primary flex items-center justify-center">
-                     <span className="material-symbols-outlined">architecture</span>
-                   </div>
-                   <div className="flex items-center gap-1 text-outline hover:text-on-surface transition-colors cursor-pointer">
-                     <span className="material-symbols-outlined text-[18px] p-1 rounded-full hover:bg-surface-container-high">edit</span>
-                     <span className="material-symbols-outlined text-[18px] p-1 rounded-full hover:bg-surface-container-high">share</span>
-                     <span className="material-symbols-outlined text-[18px] p-1 rounded-full hover:bg-surface-container-high">delete</span>
-                   </div>
-                </div>
-                
-                <h3 className="font-headline text-xl font-bold text-on-surface mb-6 relative z-10">Architectural History</h3>
-                
-                <div className="flex items-center gap-3 mt-auto relative z-10 mb-4">
-                   <div className="bg-surface-container-high text-on-surface text-xs font-semibold px-3 py-1.5 rounded-full flex items-center gap-1">
-                     <span className="material-symbols-outlined text-[14px]">layers</span> 18 Topics
-                   </div>
-                   <div className="text-xs text-on-surface-variant font-medium">Updated 1 week ago</div>
-                </div>
-                
-                <p className="text-xs text-on-surface-variant italic relative z-10 mt-auto line-clamp-1">"A deep dive into Gothic and..."</p>
-             </div>
 
           </div>
 
@@ -226,9 +251,51 @@ export default function LibrariesPage() {
               </button>
            </div>
         </div>
-
       </main>
 
+      {/* Create Library Modal Overlay */}
+      {isModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+          <div className="absolute inset-0 bg-black/40 backdrop-blur-sm transition-opacity" onClick={cancelCreate}></div>
+          <div className="relative bg-surface rounded-3xl p-8 max-w-md w-full shadow-2xl border border-outline-variant/20 animate-in fade-in zoom-in duration-200">
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="font-headline font-bold text-2xl text-on-surface">Create New Library</h2>
+              <button onClick={cancelCreate} className="text-outline-variant hover:text-on-surface transition-colors cursor-pointer">
+                <span className="material-symbols-outlined">close</span>
+              </button>
+            </div>
+            
+            <div className="mb-6">
+              <label className="block text-sm font-semibold text-on-surface-variant mb-2">Library Name</label>
+              <input 
+                type="text" 
+                value={newLibraryName}
+                onChange={(e) => {
+                  setNewLibraryName(e.target.value);
+                  setError("");
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') handleCreateLibrary();
+                  if (e.key === 'Escape') cancelCreate();
+                }}
+                placeholder="e.g. Advanced Microbiology" 
+                autoFocus
+                className={`w-full bg-surface-container-low border ${error ? 'border-error' : 'border-outline-variant/30'} focus:border-primary rounded-xl px-4 py-3 text-on-surface outline-none transition-colors shadow-inner`}
+              />
+              {error && <p className="text-error text-xs font-semibold mt-2 flex items-center gap-1"><span className="material-symbols-outlined text-[14px]">error</span>{error}</p>}
+            </div>
+            
+            <div className="flex items-center justify-end gap-3 mt-8">
+              <button onClick={cancelCreate} className="px-6 py-2.5 rounded-full text-sm font-bold text-on-surface-variant hover:bg-surface-container-high transition-colors cursor-pointer">
+                Cancel
+              </button>
+              <button onClick={handleCreateLibrary} className="px-6 py-2.5 bg-primary text-on-primary rounded-full text-sm font-bold shadow-md hover:scale-105 active:scale-95 transition-all cursor-pointer">
+                Create
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
