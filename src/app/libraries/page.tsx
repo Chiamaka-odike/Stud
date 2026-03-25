@@ -66,7 +66,7 @@ export default function LibrariesPage() {
       return;
     }
 
-    const newLibrary = {
+    const newLibrary: any = {
       id: newLibraryName.trim().toLowerCase().replace(/\s+/g, '-'),
       name: newLibraryName.trim(),
       topicsCount: "0 Topics",
@@ -74,7 +74,11 @@ export default function LibrariesPage() {
       icon: "menu_book",
       iconStyle: "bg-primary text-on-primary",
       shapeStyle: "bg-primary/5",
-      isPaper: false
+      isPaper: false,
+      hasAvatars: false,
+      progress: undefined,
+      tags: undefined,
+      quote: undefined
     };
 
     setLibraries([newLibrary, ...libraries]);
@@ -115,10 +119,7 @@ export default function LibrariesPage() {
               <span className="material-symbols-outlined text-[20px]" style={{ fontVariationSettings: "'FILL' 1" }}>local_library</span>
               My Library
             </Link>
-            <Link href="#" className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold text-on-surface-variant hover:bg-surface-container-lowest hover:text-on-surface transition-colors cursor-pointer">
-              <span className="material-symbols-outlined text-[20px]">style</span>
-              Flashcards
-            </Link>
+
          </nav>
          
          <div className="p-6 border-t border-surface-container-highest">

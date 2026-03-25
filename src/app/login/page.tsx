@@ -145,71 +145,14 @@ export default function LoginPage() {
       </main>
       
       {/* Footer from HTML */}
-      <footer className="bg-[#f1f4f5] dark:bg-slate-950 w-full rounded-none mt-auto">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 px-12 py-16 max-w-screen-2xl mx-auto">
-          <div className="md:col-span-1">
-            <div className="text-xl font-bold text-[#1a677d] dark:text-cyan-500 mb-4">
+      <footer className="bg-[#f1f4f5] dark:bg-slate-950 w-full rounded-none mt-auto py-12">
+        <div className="max-w-7xl mx-auto px-6 text-center">
+            <div className="text-xl font-bold text-[#1a677d] dark:text-cyan-500 mb-2">
               StudySphere
             </div>
-            <p className="text-slate-500 dark:text-slate-500 font-['Inter'] text-sm leading-relaxed">
-              © 2024 StudySphere. Curated for deep work.
+            <p className="text-slate-500 dark:text-slate-500 font-['Inter'] text-sm">
+              © 2026 StudySphere.
             </p>
-          </div>
-          <div>
-            <h4 className="text-on-surface font-bold text-sm mb-4">Resources</h4>
-            <ul className="space-y-3 font-['Inter'] text-sm">
-              <li>
-                <Link
-                  className="text-slate-500 dark:text-slate-500 hover:underline decoration-[#1a677d] underline-offset-4 transition-all"
-                  href="#"
-                >
-                  Curriculum
-                </Link>
-              </li>
-              <li>
-                <Link
-                  className="text-slate-500 dark:text-slate-500 hover:underline decoration-[#1a677d] underline-offset-4 transition-all"
-                  href="#"
-                >
-                  Research
-                </Link>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h4 className="text-on-surface font-bold text-sm mb-4">Legal</h4>
-            <ul className="space-y-3 font-['Inter'] text-sm">
-              <li>
-                <Link
-                  className="text-slate-500 dark:text-slate-500 hover:underline decoration-[#1a677d] underline-offset-4 transition-all"
-                  href="#"
-                >
-                  Privacy
-                </Link>
-              </li>
-              <li>
-                <Link
-                  className="text-slate-500 dark:text-slate-500 hover:underline decoration-[#1a677d] underline-offset-4 transition-all"
-                  href="#"
-                >
-                  Terms
-                </Link>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h4 className="text-on-surface font-bold text-sm mb-4">Help</h4>
-            <ul className="space-y-3 font-['Inter'] text-sm">
-              <li>
-                <Link
-                  className="text-slate-500 dark:text-slate-500 hover:underline decoration-[#1a677d] underline-offset-4 transition-all"
-                  href="#"
-                >
-                  Support
-                </Link>
-              </li>
-            </ul>
-          </div>
         </div>
       </footer>
     </>

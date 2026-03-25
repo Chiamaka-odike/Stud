@@ -99,11 +99,7 @@ export default async function LibraryContentPage({ params }: { params: Promise<{
               Library Topics
             </div>
             
-            <div className="bg-surface-container-lowest p-4 rounded-xl shadow-sm border border-outline-variant/20 mb-6">
-              <div className="text-xs font-bold text-outline-variant uppercase tracking-widest mb-3">Library Tools</div>
-              <button className="text-sm font-semibold text-on-surface hover:text-primary transition-colors block mb-2 text-left w-full cursor-pointer">Reorder Topics</button>
-              <button className="text-sm font-semibold text-on-surface hover:text-primary transition-colors block text-left w-full cursor-pointer">Export Library</button>
-            </div>
+
           </div>
           
           <div className="flex-1 overflow-y-auto relative pb-24">

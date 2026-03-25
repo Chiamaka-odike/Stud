@@ -244,17 +244,12 @@ export default function LandingPage() {
       </main>
 
       <footer className="bg-surface-container-highest w-full mt-auto">
-        <div className="px-6 py-12 max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
-          <div className="text-center md:text-left">
+        <div className="px-6 py-12 max-w-7xl mx-auto flex justify-center items-center gap-6">
+          <div className="text-center">
             <div className="text-xl font-bold text-primary mb-2">StudySphere</div>
             <p className="text-on-surface-variant text-sm">
-              © 2024 StudySphere. Curated for deep work.
+              © 2026 StudySphere.
             </p>
-          </div>
-          <div className="flex gap-6 text-sm font-medium text-on-surface-variant">
-            <Link href="#" className="hover:text-primary transition-colors">Privacy</Link>
-            <Link href="#" className="hover:text-primary transition-colors">Terms</Link>
-            <Link href="#" className="hover:text-primary transition-colors">Support</Link>
           </div>
         </div>
       </footer>

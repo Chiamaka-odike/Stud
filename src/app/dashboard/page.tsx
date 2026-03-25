@@ -133,12 +133,8 @@ export default function DashboardPage() {
       
       {/* Footer */}
       <footer className="bg-surface-container-highest/50 py-12 mt-auto border-t border-surface-container-highest">
-         <div className="max-w-7xl mx-auto px-6 text-center text-sm font-medium text-on-surface-variant flex justify-between items-center">
-           <span>© 2024 StudySphere. Curated for deep work.</span>
-           <div className="flex gap-4">
-             <Link href="#" className="hover:text-primary transition-colors">Privacy</Link>
-             <Link href="#" className="hover:text-primary transition-colors">Terms</Link>
-           </div>
+         <div className="max-w-7xl mx-auto px-6 text-center text-sm font-medium text-on-surface-variant flex justify-center items-center">
+           <span>© 2026 StudySphere.</span>
          </div>
       </footer>
     </div>

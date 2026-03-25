@@ -4,22 +4,26 @@ export default function ProfilePage() {
   return (
     <div className="min-h-screen bg-surface-container-lowest font-body flex flex-col">
       {/* Top Navbar Header */}
-      <header className="sticky top-0 z-40 bg-surface/90 backdrop-blur-md border-b border-surface-container-highest px-6 h-20 flex items-center justify-between">
-         <Link href="/dashboard" className="font-headline font-black text-2xl text-primary tracking-tighter">
+      <header className="sticky top-0 z-40 bg-surface/90 backdrop-blur-md border-b border-surface-container-highest px-8 h-20 flex items-center justify-between">
+        <div className="flex items-center gap-12">
+          <Link href="/dashboard" className="font-headline font-black text-2xl text-primary tracking-tighter">
             StudySphere
-         </Link>
-         <div className="hidden md:flex items-center gap-6 text-sm font-semibold text-on-surface-variant">
-            <Link href="/" className="hover:text-primary transition-colors">Home</Link>
-            <Link href="#features" className="hover:text-primary transition-colors">Features</Link>
-            <Link href="#pricing" className="hover:text-primary transition-colors">Pricing</Link>
-            <Link href="#about" className="hover:text-primary transition-colors">About</Link>
-         </div>
-         <div className="flex items-center gap-4">
-            <Link href="/dashboard" className="bg-primary text-on-primary px-6 py-2.5 rounded-full text-sm font-bold hover:bg-primary-dim transition-colors">
-              Get Started
-            </Link>
-            <div className="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center"></div>
-         </div>
+          </Link>
+          <nav className="hidden md:flex gap-8 text-sm font-semibold text-on-surface-variant">
+            <Link href="/dashboard" className="hover:text-primary transition-colors">Dashboard</Link>
+            <Link href="/libraries" className="hover:text-primary transition-colors">Libraries</Link>
+          </nav>
+        </div>
+        
+        <div className="flex items-center gap-6">
+          <div className="relative hidden md:block">
+            <span className="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline text-[20px]">search</span>
+            <input type="text" placeholder="Search resources..." className="pl-12 pr-4 py-2.5 bg-surface-container-high border-none rounded-full text-sm text-on-surface focus:ring-2 focus:ring-primary/30 outline-none w-64" />
+          </div>
+          <Link href="/profile" className="w-10 h-10 rounded-full border-2 border-primary text-primary overflow-hidden flex items-center justify-center bg-secondary-container hover:scale-105 transition-transform">
+            <span className="material-symbols-outlined">person</span>
+          </Link>
+        </div>
       </header>
 
       <div className="bg-surface-container-low border-b border-surface-container-highest py-4 px-6">
@@ -100,10 +104,9 @@ export default function ProfilePage() {
                 <h1 className="font-headline text-4xl font-extrabold text-on-background mb-2">Intellectual Growth</h1>
                 <p className="text-on-surface-variant text-lg">Your academic trajectory for the past 30 days.</p>
               </div>
-              <div className="flex bg-surface-container-high rounded-full p-1 self-start sm:self-auto">
-                <button className="px-5 py-2 text-sm font-semibold rounded-full text-on-surface-variant hover:text-on-surface transition-colors">Monthly</button>
-                <button className="px-5 py-2 text-sm font-bold rounded-full bg-primary text-on-primary shadow-sm">Weekly</button>
-              </div>
+               <div className="flex self-start sm:self-auto min-h-[40px]">
+                 {/* Monthly/Weekly toggle removed */}
+               </div>
            </div>
 
            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -222,42 +225,9 @@ export default function ProfilePage() {
 
       </main>
 
-      <footer className="bg-surface-container-highest/20 mt-auto border-t border-surface-container-highest py-10">
-         <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div className="md:col-span-1">
-               <div className="font-headline font-bold text-xl text-primary mb-4">StudySphere</div>
-               <p className="text-xs text-on-surface-variant leading-relaxed mb-6">Curated for deep work and high-level academic research. Empowering the next generation of scholars.</p>
-               <div className="text-[10px] text-on-surface-variant">© 2024 StudySphere. Curated for deep work.</div>
-            </div>
-            
-            <div>
-               <h4 className="font-bold text-sm text-on-surface mb-4">Resources</h4>
-               <ul className="space-y-3 text-xs text-on-surface-variant">
-                  <li><Link href="#" className="hover:text-primary transition-colors">Curriculum</Link></li>
-                  <li><Link href="#" className="hover:text-primary transition-colors">Research</Link></li>
-                  <li><Link href="#" className="hover:text-primary transition-colors">AI Training</Link></li>
-               </ul>
-            </div>
-
-            <div>
-               <h4 className="font-bold text-sm text-on-surface mb-4">Institutional</h4>
-               <ul className="space-y-3 text-xs text-on-surface-variant">
-                  <li><Link href="#" className="hover:text-primary transition-colors">Privacy</Link></li>
-                  <li><Link href="#" className="hover:text-primary transition-colors">Terms</Link></li>
-                  <li><Link href="#" className="hover:text-primary transition-colors">Support</Link></li>
-               </ul>
-            </div>
-
-            <div>
-               <h4 className="font-bold text-sm text-on-surface mb-4">Newsletter</h4>
-               <p className="text-xs text-on-surface-variant mb-4">Get the latest research insights weekly.</p>
-               <div className="flex bg-surface-container-lowest rounded-md overflow-hidden border border-outline-variant/30 focus-within:ring-2 focus-within:ring-primary/20">
-                  <input type="email" placeholder="Email" className="w-full bg-transparent px-3 py-2 text-xs outline-none" />
-                  <button className="bg-primary text-on-primary px-3 flex items-center justify-center hover:bg-primary-dim transition-colors cursor-pointer">
-                    <span className="material-symbols-outlined text-[16px]">send</span>
-                  </button>
-               </div>
-            </div>
+      <footer className="bg-surface-container-highest/50 py-12 mt-auto border-t border-surface-container-highest">
+         <div className="max-w-7xl mx-auto px-6 text-center text-sm font-medium text-on-surface-variant flex justify-center items-center">
+           <span>© 2026 StudySphere.</span>
          </div>
       </footer>
     </div>
