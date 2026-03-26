@@ -1,12 +1,12 @@
-# 📚 Stud - Student Learning Platform
+Study-Sphere - Student Learning Platform
 
 A modern, full-stack student learning platform built with Next.js, TypeScript, and Interswitch payment integration. Stud provides a seamless experience for students to access educational content and manage their learning journey.
 
-## 🎯 Project Overview
+Project Overview
 
-Stud is a comprehensive student learning management system designed to facilitate collaborative learning and resource management. The platform integrates secure payment processing through Interswitch API and delivers a responsive, intuitive user interface for an optimal learning experience.
+Study-Sphere is a comprehensive student learning management system designed to facilitate collaborative learning and resource management. The platform integrates secure payment processing through Interswitch API and delivers a responsive, intuitive user interface for an optimal learning experience.
 
-### Key Features
+Key Features
 
 - **User-Friendly Interface**: Clean, responsive, and intuitive design optimized for all devices
 - **Secure Payment Integration**: Integrated Interswitch API for seamless payment processing
@@ -14,14 +14,14 @@ Stud is a comprehensive student learning management system designed to facilitat
 - **Type-Safe Development**: Built with TypeScript for enhanced code reliability and maintainability
 - **Next.js Framework**: Modern React framework for optimal performance and SEO
 
-## 🛠️ Tech Stack
+Tech Stack
 
 - **Frontend**: Next.js, React, TypeScript, Tailwind CSS
 - **Backend**: Node.js, API integration (Interswitch)
 - **Language**: TypeScript
 - **Build Tools**: ESLint, PostCSS
 
-## 🚀 Getting Started
+**Getting Started**
 
 ### Prerequisites
 
@@ -66,7 +66,7 @@ bun dev
 - The project uses `next/font` for automatic font optimization and loading
 - ESLint configuration is available for code quality checks
 
-## 👥 Team Contributions
+##  Team Contributions
 
 This project was developed collaboratively with clear role separation:
 
@@ -92,7 +92,7 @@ Handled all server-side logic and system functionality:
 
 **Responsibilities**: API Development, Payment Integration, Backend Architecture, Server-Side Logic, Database Management, System Integration
 
-## 📁 Project Structure
+##  Project Structure
 
 ```
 Stud/
@@ -106,7 +106,7 @@ Stud/
 └── postcss.config.mjs      # PostCSS configuration
 ```
 
-## 📚 Learn More
+##  Learn More
 
 To learn more about the technologies used in this project:
 
@@ -115,21 +115,21 @@ To learn more about the technologies used in this project:
 - [TypeScript Documentation](https://www.typescriptlang.org/docs) - Learn about TypeScript
 - [Interswitch API Documentation](https://developer.interswitchgroup.com) - Payment processing
 
-## 🚀 Deployment
+##  Deployment
 
 The easiest way to deploy this Next.js application is using the [Vercel Platform](https://vercel.com) from the creators of Next.js.
 
 For detailed deployment instructions, check the [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying).
 
-## 📝 License
+License
 
 This project is open source and available under the MIT License.
 
-## 🤝 Contributing
+##  Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
-## 📧 Contact
+##  Contact
 
 For questions or inquiries about the project, please reach out to the team members or open an issue in the repository.
 
